@@ -1,39 +1,27 @@
-#include <stdio.h>
-#include <stdbool.h>
-bool isS(char *str);
-bool isA(char *str);
-bool isS(char *str) {
-    if (*str == '0') {
-        str++;
-        if (isA(str)) {
-            if (*str == '1') {
-                str++;
-                return (*str == '\0'); 
-            }
-        }
-    }
-    return false;
+#include<stdio.h>
+#include<string.h>
+int main(){
+	char s[100];
+	int i,flag;
+	printf("Enter a string to check:");
+	scanf("%s",s);
+	int l=strlen(s);
+	flag=0;
+	for(i=0;i<l;i++){
+		if(s[i]!='0' && s[i]!='1'){
+			flag=1;
+		}
+	}
+	if(flag!=0){
+		printf("string is Not Valid\n");
+	}
+	if(flag==0){
+		if (s[0]=='0'&&s[l-1]=='1'){
+		printf("string is accepted\n");
+		}
+		else{
+			printf("string is Not accepted\n");
+		}
+	}
+	return 0;
 }
-bool isA(char *str) {
-    if (*str == '0') {
-        str++;
-        return isA(str);
-    } else if (*str == '1') {
-        str++;
-        return isA(str);
-    } else {
-        return true;
-    }
-}
-int main() {
-    char input[100];
-    printf("Enter a string: ");
-    scanf("%s", input);
-    if (isS(input)) {
-        printf("The string '%s' belongs to the language defined by the CFG.\n", input);
-    } else {
-        printf("The string '%s' does not belong to the language defined by the CFG.\n", input);
-    }
-    return 0;
-}
-
